@@ -16,7 +16,16 @@ while True:
             meibo.append([id, name])
             print("ユーザを追加しました", id)
     elif command == 'get':
-        pass
+        if len(params) == 1:
+            id = params[0]
+
+            meibo_ids = [m[0] for m in meibo]
+            try:
+                found_at = meibo_ids.index(id)
+                print(id, "番は", meibo[found_at][1], "さんです")
+            except ValueError:
+                print(id, "は登録されていません")
+
     elif command == 'import':
         pass
     elif command == 'export':
