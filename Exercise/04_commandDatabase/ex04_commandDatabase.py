@@ -9,7 +9,12 @@ while True:
     if command == 'exit':
         quit(0)
     elif command == 'set':
-        pass
+        if len(params) == 2:
+            id = params[0]
+            name = params[1]
+
+            meibo.append([id, name])
+            print("ユーザを追加しました", id)
     elif command == 'get':
         pass
     elif command == 'import':
