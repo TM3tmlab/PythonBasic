@@ -15,7 +15,22 @@ while True:
             id = params[0]
             name = params[1]
 
+            # meibo は リスト の中に リスト が入っている2次元構造のため、
+            # 1次元リストから検索を行う index メソッドをそのまま使えない。
+            # そのため、2次元リストの id を表す場所だけを抽出した新しい1次元リストを
+            # 作成している。
+            
+            # [] の中に for が書かれているが、このような記述を リスト内包表現 という
+            # 次のようなコードと 等価 となっている
+            # meibo_ids = []
+            # for m in meibo:
+            #   meibo_ids.append(m[0])
             meibo_ids = [m[0] for m in meibo]
+
+            # index は検索している値が見つからなかった場合 ValueError という 例外 を発生させる
+            # 例外が発生するとき、何も対処をしなければプログラムが止まるようになっている。
+            # 今回は見つからなかった場合の 挙動(ムーブ、動作、動き) は決まっているので
+            # 例外を制御する構文 try-except を使って見つからなかった場合の挙動を実装している
             try:
                 found_at = meibo_ids.index(id)
                 meibo[found_at][1] = name
