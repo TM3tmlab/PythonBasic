@@ -13,8 +13,14 @@ while True:
             id = params[0]
             name = params[1]
 
-            meibo.append([id, name])
-            print("ユーザを追加しました", id)
+            meibo_ids = [m[0] for m in meibo]
+            try:
+                found_at = meibo_ids.index(id)
+                meibo[found_at][1] = name
+                print(id, "番の情報を更新しました")
+            except ValueError:
+                meibo.append([id, name])
+                print("ユーザを追加しました", id)
     elif command == 'get':
         if len(params) == 1:
             id = params[0]
