@@ -35,7 +35,15 @@ while True:
                 print(id, "は登録されていません")
 
     elif command == 'import':
-        pass
+        # import を行った場合、既存のデータは消去されることにする
+        if len(params) == 1:
+            filename = params[0]
+
+            # 改行文字対策で newline オプションを指定
+            with open(filename, mode="r", newline='') as file_obj:
+                csv_reader = csv.reader(file_obj)
+                meibo = [r for r in csv_reader]
+
     elif command == 'export':
         if len(params) == 1:
             filename = params[0]
