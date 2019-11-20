@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import csv
+
 meibo = []
 
 while True:
@@ -35,7 +37,13 @@ while True:
     elif command == 'import':
         pass
     elif command == 'export':
-        pass
+        if len(params) == 1:
+            filename = params[0]
+
+            # 改行文字対策で newline オプションを指定
+            with open(filename, mode="w", newline='') as file_obj:
+                csv_writer = csv.writer(file_obj)
+                csv_writer.writerows(meibo)
     else:
         print('input command')
          
